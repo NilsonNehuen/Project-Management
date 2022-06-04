@@ -15,6 +15,7 @@ do
     mysql --user=$user_name --password=$user_password -e "use gestion_proyectos; describe"" "$table";"
 done
 
+
 # mysqlimport --ignore-lines=1 \
 # --fields-terminated-by=, \
 # --local -u gorz \
