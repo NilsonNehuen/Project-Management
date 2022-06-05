@@ -87,7 +87,7 @@ CREATE TABLE Recursos(
     nombre VARCHAR(30),
     tipo VARCHAR(10),
     descripcion VARCHAR(40),
-    PRIMARY KEY (cod_recurso),
+    PRIMARY KEY (cod_recurso)
 );
 
 CREATE TABLE Fases_comp(
@@ -98,8 +98,7 @@ CREATE TABLE Fases_comp(
     fecha_inicio DATE,
     fecha_fin DATE,
     PRIMARY KEY (num_sec, cod_proyecto),
-    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyectos) ON DELETE NO ACTION
-
+    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE NO ACTION
 );
 
 CREATE TABLE Corresponde(
@@ -108,9 +107,9 @@ CREATE TABLE Corresponde(
     cod_proyecto INTEGER,
     tiempo_utilizado TIME,
     PRIMARY KEY (num_sec, cod_recurso, cod_proyecto),
-    FOREGIN KEY (cod_recurso) REFERENCES Recursos(cod_recurso)
-    FOREGIN KEY (num_sec) REFERENCES Fases_comp(num_sec)
-    FOREGIN KEY (cod_proyecto) REFERENCES Fases_comp(cod_proyecto)
+    FOREIGN KEY (cod_recurso) REFERENCES Recursos(cod_recurso),
+    FOREIGN KEY (num_sec) REFERENCES Fases_comp(num_sec),
+    FOREIGN KEY (cod_proyecto) REFERENCES Fases_comp(cod_proyecto)
 );
 
 CREATE TABLE Productos(
@@ -127,7 +126,7 @@ CREATE TABLE Software(
     tipo VARCHAR(40),
     cod_software INTEGER,
     PRIMARY KEY (cod_software),
-    FOREIGN KEY (cod_sofware) REFERENCES Productos(cod_producto)
+    FOREIGN KEY (cod_software) REFERENCES Productos(cod_producto)
 );
 
 
@@ -139,16 +138,6 @@ CREATE TABLE Prototipos(
     FOREIGN KEY (cod_prototipo) REFERENCES Productos(cod_producto)
 );
 
-CREATE TABLE Involucrados(
-    cod_informatico INTEGER,
-    cod_fase INTEGER,
-    cod_producto INTEGER,
-    horas_dedicadas TIME,
-    PRIMARY KEY (cod_fase, cod_informatico, cod_producto),
-    FOREIGN KEY (cod_fase) REFERENCES Fases_comp(cod_fase),
-    FOREIGN KEY (cod_producto) REFERENCES Fases_comp(cod_producto),
-    FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico)
-);
 
 CREATE TABLE Se_crean(
     num_sec INTEGER,
@@ -158,4 +147,17 @@ CREATE TABLE Se_crean(
     FOREIGN KEY (num_sec) REFERENCES Fases_comp(num_sec),
     FOREIGN KEY (cod_proyecto) REFERENCES Fases_comp(cod_proyecto),
     FOREIGN KEY (cod_producto) REFERENCES Productos(cod_producto)
+);
+
+CREATE TABLE Involucrados(
+    cod_informatico INTEGER,
+    num_sec INTEGER,
+    cod_proyecto INTEGER,
+    cod_producto INTEGER,
+    horas_dedicadas TIME,
+    PRIMARY KEY (cod_informatico, num_sec, cod_proyecto, cod_producto),
+    FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico),
+    FOREIGN KEY (num_sec) REFERENCES Se_crean(num_sec),
+    FOREIGN KEY (cod_proyecto) REFERENCES Se_crean(cod_proyecto),
+    FOREIGN KEY (cod_producto) REFERENCES Se_crean(cod_producto)
 );
