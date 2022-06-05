@@ -33,6 +33,7 @@ CREATE TABLE Analistas(
 
 CREATE TABLE Programadores(
     cod_programador INTEGER,
+    lenguages ENUM('JAVA', 'C', 'JAVASCRIP'),
     PRIMARY KEY (cod_programador),
     FOREIGN KEY (cod_programador) REFERENCES Informaticos(cod_informatico) ON DELETE CASCADE
 );
@@ -60,17 +61,35 @@ CREATE TABLE Asignados(
     FOREIGN KEY (cod_empleado) REFERENCES Empleados(cod_empleado) ON DELETE NO ACTION
 );
 
+-- assert
+
+-- CREATE TABLE Gastos(
+--     cod_proyecto INTEGER,
+--     cod_gasto INTEGER,
+--     tipo VARCHAR(40),
+--     descripcion VARCHAR(40),
+--     importe FLOAT,
+--     fecha DATE,
+--     PRIMARY KEY (cod_proyecto, cod_gasto),
+--     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
+-- );
+
 
 CREATE TABLE Gastos(
     cod_proyecto INTEGER,
     cod_gasto INTEGER,
+    cod_jefe INTEGER,
+    cod_informatico INTEGER,
     tipo VARCHAR(40),
     descripcion VARCHAR(40),
     importe FLOAT,
-    fecha DATE,
-    PRIMARY KEY (cod_proyecto, cod_gasto),
+    fecha DATE NOT NULL,
+    PRIMARY KEY (cod_proyecto,cod_jefe, cod_informatico, cod_gasto),
     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
+    FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE CASCADE
+    FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico) ON DELETE CASCADE
 );
+
 
 CREATE TABLE Participan(
     cod_proyecto INTEGER,
@@ -116,7 +135,7 @@ CREATE TABLE Productos(
     cod_producto INTEGER,
     nombre VARCHAR(30),
     descripcion VARCHAR(40),
-    estado ENUM('Malo', 'Bueno'),
+    estado ENUM('Finalizado', 'Inicio', 'En_proceso'),
     cod_analista INTEGER,
     PRIMARY KEY (cod_producto),
     FOREIGN KEY (cod_analista) REFERENCES Analistas(cod_analista)

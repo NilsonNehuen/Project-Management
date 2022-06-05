@@ -7,7 +7,7 @@ mysql --user=$user_name --password=$user_password -e "source "$(find / -type f -
 
 tables=$(mysql --user=$user_name --password=$user_password -e "use gestion_proyectos; show tables;" | grep -E "[A-Z][a-z]+$")
 
-clear
+# clear
 echo "#########################################################################################################################"
 echo "# Tables created"
 echo "#########################################################################################################################"
@@ -15,6 +15,9 @@ for table in $tables
 do
     echo $table
 done
+
+
+#mysqlimport [opcion] database [file1] [file2] ...
 
 # mysqlimport --ignore-lines=1 \
 # --fields-terminated-by=, \
