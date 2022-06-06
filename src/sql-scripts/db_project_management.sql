@@ -8,8 +8,8 @@ CREATE TABLE Empleados(
     cod_empleado INTEGER,
     titulacion VARCHAR(20),
     años_experiencia INTEGER,
-    nombre VARCHAR(40),
-    direccion VARCHAR(30),
+    nombre VARCHAR(40) NOT NULL,
+    direccion VARCHAR(30) NOT NULL,
     PRIMARY KEY (cod_empleado)
 );
 
@@ -41,14 +41,14 @@ CREATE TABLE Programadores(
 CREATE TABLE Proyectos(
     cod_proyecto INTEGER,
     nombre VARCHAR(40),
-    fecha_inicio DATE,
+    fecha_inicio DATE NOT NULL,
     fecha_fin DATE,
-    presupuesto FLOAT,
+    presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
     horas_estimadas TIME,
-    horas_dedicadas TIME,
-    coste_participacion FLOAT,
-    cod_jefe INTEGER,
+    -- horas_dedicadas TIME, El escenario no lo pide
+    -- coste_participacion FLOAT, El escenario no lo pide
+    cod_jefe INTEGER NOT NULL,
     PRIMARY KEY (cod_proyecto),
     FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
