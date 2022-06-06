@@ -41,6 +41,7 @@ CREATE TABLE Programadores(
 CREATE TABLE Proyectos(
     cod_proyecto INTEGER,
     nombre VARCHAR(40),
+    nom_cliente VARCHAR(40),
     fecha_inicio DATE,
     fecha_fin DATE,
     presupuesto FLOAT,
