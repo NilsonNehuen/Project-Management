@@ -42,6 +42,7 @@ CREATE TABLE Proyectos(
     cod_proyecto INTEGER,
     nombre VARCHAR(40),
     fecha_inicio DATE NOT NULL,
+    nom_cliente VARCHAR(40),
     fecha_fin DATE,
     presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
@@ -117,7 +118,7 @@ CREATE TABLE Fases_comp(
     fecha_inicio DATE,
     fecha_fin DATE,
     PRIMARY KEY (num_sec, cod_proyecto),
-    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE NO ACTION
+    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
 );
 
 CREATE TABLE Corresponde(
