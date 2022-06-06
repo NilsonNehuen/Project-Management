@@ -8,8 +8,8 @@ CREATE TABLE Empleados(
     cod_empleado INTEGER,
     titulacion VARCHAR(20),
     años_experiencia INTEGER,
-    nombre VARCHAR(40),
-    direccion VARCHAR(30),
+    nombre VARCHAR(40) NOT NULL,
+    direccion VARCHAR(30) NOT NULL,
     PRIMARY KEY (cod_empleado)
 );
 
@@ -96,7 +96,7 @@ CREATE TABLE Gastos(
 CREATE TABLE Participan(
     cod_proyecto INTEGER,
     cod_informatico INTEGER,
-    costo_por_hora FLOAT,
+    costo_por_hora FLOAT NOT NULL,
     horas_totales TIME,
     PRIMARY KEY (cod_proyecto, cod_informatico),
     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto),
