@@ -47,8 +47,8 @@ CREATE TABLE Proyectos(
     presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
     horas_estimadas TIME,
-    -- horas_dedicadas TIME, El escenario no lo pide
-    -- coste_participacion FLOAT, El escenario no lo pide
+    horas_dedicadas TIME, El escenario no lo pide
+    coste_participacion FLOAT, El escenario no lo pide
     cod_jefe INTEGER NOT NULL,
     PRIMARY KEY (cod_proyecto),
     FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -62,35 +62,18 @@ CREATE TABLE Asignados(
     FOREIGN KEY (cod_empleado) REFERENCES Empleados(cod_empleado) ON DELETE NO ACTION
 );
 
--- assert
-
--- CREATE TABLE Gastos(
---     cod_proyecto INTEGER,
---     cod_gasto INTEGER,
---     tipo VARCHAR(40),
---     descripcion VARCHAR(40),
---     importe FLOAT,
---     fecha DATE,
---     PRIMARY KEY (cod_proyecto, cod_gasto),
---     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
--- );
-
-
 CREATE TABLE Gastos(
     cod_proyecto INTEGER,
+    cod_empleado INTEGER,
     cod_gasto INTEGER,
-    cod_jefe INTEGER,
-    cod_informatico INTEGER,
     tipo VARCHAR(40),
     descripcion VARCHAR(40),
     importe FLOAT,
-    fecha DATE NOT NULL,
-    PRIMARY KEY (cod_proyecto,cod_jefe, cod_informatico, cod_gasto),
-    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
-    FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE CASCADE
-    FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico) ON DELETE CASCADE
+    fecha DATE,
+    PRIMARY KEY (cod_proyecto, cod_empleado, cod_gasto),
+    FOREIGN KEY (cod_proyecto) REFERENCES Asignados(cod_proyecto) ON DELETE CASCADE,
+    FOREIGN KEY (cod_empleado) REFERENCES Asignados(cod_empleado) ON DELETE CASCADE
 );
-
 
 CREATE TABLE Participan(
     cod_proyecto INTEGER,
