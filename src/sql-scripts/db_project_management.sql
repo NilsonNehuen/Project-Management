@@ -117,7 +117,7 @@ CREATE TABLE Fases_comp(
     fecha_inicio DATE,
     fecha_fin DATE,
     PRIMARY KEY (num_sec, cod_proyecto),
-    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE NO ACTION
+    FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
 );
 
 CREATE TABLE Corresponde(
