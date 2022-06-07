@@ -49,7 +49,7 @@ CREATE TABLE Proyectos(
     horas_estimadas TIME,
     horas_dedicadas TIME  NOT NULL,
     coste_participacion FLOAT NOT NULL,
-    cod_jefe INTEGER NOT NULL,
+    cod_jefe INTEGER,
     PRIMARY KEY (cod_proyecto),
     FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
