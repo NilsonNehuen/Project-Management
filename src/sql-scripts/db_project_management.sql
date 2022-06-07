@@ -42,7 +42,7 @@ CREATE TABLE Proyectos(
     cod_proyecto INTEGER,
     nombre VARCHAR(40),
     fecha_inicio DATE NOT NULL,
-    nom_cliente VARCHAR(40),
+    nom_cliente VARCHAR(40) NOT NULL,
     fecha_fin DATE,
     presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
