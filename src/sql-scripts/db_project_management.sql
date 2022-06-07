@@ -42,7 +42,7 @@ CREATE TABLE Proyectos(
     cod_proyecto INTEGER,
     nombre VARCHAR(40),
     fecha_inicio DATE NOT NULL,
-    nom_cliente VARCHAR(40),
+    nom_cliente VARCHAR(40) NOT NULL,
     fecha_fin DATE,
     presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
@@ -135,7 +135,7 @@ CREATE TABLE Software(
 
 CREATE TABLE Prototipos(
     cod_prototipo INTEGER,
-    version_prot VARCHAR(10),
+    version_prot VARCHAR(10) NOT NULL,
     ubicacion VARCHAR(20),
     PRIMARY KEY (cod_prototipo),
     FOREIGN KEY (cod_prototipo) REFERENCES Productos(cod_producto)
@@ -157,7 +157,7 @@ CREATE TABLE Involucrados(
     num_sec INTEGER,
     cod_proyecto INTEGER,
     cod_producto INTEGER,
-    horas_dedicadas TIME,
+    horas_dedicadas TIME NOT NULL,
     PRIMARY KEY (cod_informatico, num_sec, cod_proyecto, cod_producto),
     FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico),
     FOREIGN KEY (num_sec) REFERENCES Se_crean(num_sec),
