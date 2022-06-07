@@ -135,7 +135,7 @@ CREATE TABLE Software(
 
 CREATE TABLE Prototipos(
     cod_prototipo INTEGER,
-    version_prot VARCHAR(10),
+    version_prot VARCHAR(10) NOT NULL,
     ubicacion VARCHAR(20),
     PRIMARY KEY (cod_prototipo),
     FOREIGN KEY (cod_prototipo) REFERENCES Productos(cod_producto)
