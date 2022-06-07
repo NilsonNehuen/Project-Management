@@ -47,8 +47,8 @@ CREATE TABLE Proyectos(
     presupuesto FLOAT NOT NULL,
     descripcion VARCHAR(40),
     horas_estimadas TIME,
-    horas_dedicadas TIME, El escenario no lo pide
-    coste_participacion FLOAT, El escenario no lo pide
+    horas_dedicadas TIME  NOT NULL,
+    coste_participacion FLOAT NOT NULL,
     cod_jefe INTEGER NOT NULL,
     PRIMARY KEY (cod_proyecto),
     FOREIGN KEY (cod_jefe) REFERENCES Jefes(cod_jefe) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -66,10 +66,10 @@ CREATE TABLE Gastos(
     cod_proyecto INTEGER,
     cod_empleado INTEGER,
     cod_gasto INTEGER,
-    tipo VARCHAR(40),
+    tipo VARCHAR(40) NOT NULL,
     descripcion VARCHAR(40),
-    importe FLOAT,
-    fecha DATE,
+    importe FLOAT NOT NULL,
+    fecha DATE NOT NULL,
     PRIMARY KEY (cod_proyecto, cod_empleado, cod_gasto),
     FOREIGN KEY (cod_proyecto) REFERENCES Asignados(cod_proyecto) ON DELETE CASCADE,
     FOREIGN KEY (cod_empleado) REFERENCES Asignados(cod_empleado) ON DELETE CASCADE
@@ -87,8 +87,8 @@ CREATE TABLE Participan(
 
 CREATE TABLE Recursos(
     cod_recurso INTEGER,
-    nombre VARCHAR(30),
-    tipo VARCHAR(10),
+    nombre VARCHAR(30) NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
     descripcion VARCHAR(40),
     PRIMARY KEY (cod_recurso)
 );
@@ -97,8 +97,8 @@ CREATE TABLE Fases_comp(
     num_sec INTEGER,
     cod_proyecto INTEGER,
     nombre VARCHAR(30),
-    estado VARCHAR(10),
-    fecha_inicio DATE,
+    estado VARCHAR(10) NOT NULL,
+    fecha_inicio DATE NOT NULL,
     fecha_fin DATE,
     PRIMARY KEY (num_sec, cod_proyecto),
     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto) ON DELETE CASCADE
@@ -108,7 +108,7 @@ CREATE TABLE Corresponde(
     num_sec INTEGER,
     cod_recurso INTEGER,
     cod_proyecto INTEGER,
-    tiempo_utilizado TIME,
+    tiempo_utilizado TIME NOT NULL,
     PRIMARY KEY (num_sec, cod_recurso, cod_proyecto),
     FOREIGN KEY (cod_recurso) REFERENCES Recursos(cod_recurso),
     FOREIGN KEY (num_sec) REFERENCES Fases_comp(num_sec),
@@ -117,9 +117,9 @@ CREATE TABLE Corresponde(
 
 CREATE TABLE Productos(
     cod_producto INTEGER,
-    nombre VARCHAR(30),
+    nombre VARCHAR(30) NOT NULL,
     descripcion VARCHAR(40),
-    estado ENUM('Finalizado', 'Inicio', 'En_proceso'),
+    estado ENUM('Finalizado', 'Inicio', 'En_proceso') NOT NULL,
     cod_analista INTEGER,
     PRIMARY KEY (cod_producto),
     FOREIGN KEY (cod_analista) REFERENCES Analistas(cod_analista)
