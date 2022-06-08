@@ -78,8 +78,8 @@ CREATE TABLE Gastos(
 CREATE TABLE Participan(
     cod_proyecto INTEGER,
     cod_informatico INTEGER,
-    costo_por_hora FLOAT,
-    horas_totales INTEGER,
+    costo_por_hora FLOAT NOT NULL,
+    horas_totales INTEGER NOT NULL,
     PRIMARY KEY (cod_proyecto, cod_informatico),
     FOREIGN KEY (cod_proyecto) REFERENCES Proyectos(cod_proyecto),
     FOREIGN KEY (cod_informatico) REFERENCES Informaticos(cod_informatico)
