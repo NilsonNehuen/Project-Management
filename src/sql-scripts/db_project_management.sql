@@ -6,10 +6,10 @@ USE gestion_proyectos;
 
 CREATE TABLE Empleados(
     cod_empleado INTEGER,
-    titulacion VARCHAR(20),
+    titulacion VARCHAR(50),
     años_experiencia INTEGER,
     nombre VARCHAR(40) NOT NULL,
-    direccion VARCHAR(30) NOT NULL,
+    direccion VARCHAR(50) NOT NULL,
     PRIMARY KEY (cod_empleado)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE Analistas(
 
 CREATE TABLE Programadores(
     cod_programador INTEGER,
-    lenguages ENUM('JAVA', 'C', 'JAVASCRIP'),
+    lenguages ENUM('JAVA', 'C', 'JAVASCRIPT'),
     PRIMARY KEY (cod_programador),
     FOREIGN KEY (cod_programador) REFERENCES Informaticos(cod_informatico) ON DELETE CASCADE
 );
