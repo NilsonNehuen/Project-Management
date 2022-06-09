@@ -9,7 +9,7 @@ CREATE TABLE Empleados(
     titulacion VARCHAR(50),
     años_experiencia INTEGER,
     nombre VARCHAR(40) NOT NULL,
-    direccion VARCHAR(50) NOT NULL,
+    direccion VARCHAR(80) NOT NULL,
     PRIMARY KEY (cod_empleado)
 );
 
